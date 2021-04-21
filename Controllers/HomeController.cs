@@ -19,7 +19,7 @@ namespace FinalProject.Controllers
             _logger = logger;
         }
 
-        [Authorize(Roles = "Admin,Moderator")]
+        //[Authorize(Roles = "Admin,Moderator")]
         public IActionResult Index()
         {
             return View();
