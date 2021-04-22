@@ -1,9 +1,13 @@
-﻿@*@model  FinalProject.Models.ApplicationUser*@
+﻿@model  SignInViewModel
 <h1>Login</h1>
-<form action="login" method="post">
-    <input type="text" name="username" placeholder="Username" />
-    <input type="password" name="password" placeholder="Password" />
-    <input type="submit"  value="login" />
+<div asp-validation-summary="All"></div>
+<form action="Login" method="post">
+    <input type="text" asp-for="Login" placeholder="Username" />
+    <span asp-validation-for="Login" class="text-danger"></span>
+    <input type="password" asp-for="Password" placeholder="Password" />
+    <span asp-validation-for="Password" class="text-danger"></span>
+    <input type="hidden" asp-for="ReturnUrl" />
+    <input type="submit" value="login" />
 </form>
 
 
