@@ -1,28 +1,40 @@
 ﻿@model SignUpViewModel
-<h1>Login</h1>
-<div asp-validation-summary="All"></div>
-<form action="Register" method="post">
-    <input type="text" asp-for="FirstName" placeholder="FirstName" />
-    <span asp-validation-for="FirstName" class="text-danger"></span>
-    <input type="text" asp-for="LastName" placeholder="LastName" />
-    <span asp-validation-for="LastName" class="text-danger"></span>
-    <input type="text" asp-for="MiddleName" placeholder="MiddleName" />
-    <span asp-validation-for="MiddleName" class="text-danger"></span>
-    <input type="email" asp-for="Email" placeholder="Email" autocomplete="off" />
-    <span asp-validation-for="Email" class="text-danger"></span>
-    <input type="text" asp-for="PhoneNumber" placeholder="PhoneNumber" />
-    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-    <input type="date" asp-for="DOB" placeholder="DateOfBirth" />
-    <span asp-validation-for="DOB" class="text-danger"></span>
-    <select asp-for="Gender">
-        <option value="M">Male</option>
-        <option value="F">Female</option>
-    </select>
-    <input type="text" asp-for="Login" placeholder="Login" />
-    <span asp-validation-for="Login" class="text-danger"></span>
-    <input type="password" asp-for="Password" placeholder="Password" autocomplete="off" />
-    <span asp-validation-for="Password" class="text-danger"></span>
-    <input type="password" asp-for="ConfirmPassword" placeholder="ConfirmPassword" />
-    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-    <input type="submit" value="Register" />
-</form>
+<h1>Register</h1>
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-4">
+            <div asp-validation-summary="All"></div>
+            <form action="Register" method="post">
+                <input type="text" class="form-control" asp-for="FirstName" placeholder="FirstName" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+                <input type="text" class="form-control" asp-for="LastName" placeholder="LastName" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+                <input type="text" class="form-control" asp-for="MiddleName" placeholder="MiddleName" />
+                <span asp-validation-for="MiddleName" class="text-danger"></span>
+                <input type="email" class="form-control" asp-for="Email" placeholder="Email" autocomplete="off" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+                <input type="text" class="form-control" asp-for="PhoneNumber" placeholder="PhoneNumber" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                <input type="date" class="form-control" asp-for="DOB" placeholder="DateOfBirth" />
+                <span asp-validation-for="DOB" class="text-danger"></span>
+                <select asp-for="Gender">
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+                <input type="text" class="form-control" asp-for="Login" placeholder="Login" />
+                <span asp-validation-for="Login" class="text-danger"></span>
+                <input type="password" class="form-control" asp-for="Password" placeholder="Password" autocomplete="off" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+                <input type="password" class="form-control" asp-for="ConfirmPassword" placeholder="ConfirmPassword" autocomplete="off" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                <input type="submit" value="Register" />
+            </form>
+        </div>
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+        </div>
+    </div>
+</div>
+
