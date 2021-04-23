@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FinalProject.Models
+namespace FinalProject.ViewModels
 {
-    public class City
+    public class CategoryViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public virtual ICollection<Course> Courses { get; set; }
     }
 }

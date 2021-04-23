@@ -76,7 +76,7 @@ namespace FinalProject.Controllers
 
             if(result.Succeeded)
             {
-                await userManager.AddToRoleAsync(user, "User");
+                await userManager.AddToRoleAsync(user,"User");
                 return RedirectToAction("Login");
             }
 
