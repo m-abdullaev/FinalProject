@@ -4,14 +4,16 @@ using FinalProject.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FinalProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210425141736_AddTwoCourses")]
+    partial class AddTwoCourses
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -265,7 +267,7 @@ namespace FinalProject.Migrations
                         },
                         new
                         {
-                            CityId = 3,
+                            CityId = 4,
                             CourseId = 1
                         },
                         new
@@ -280,43 +282,8 @@ namespace FinalProject.Migrations
                         },
                         new
                         {
-                            CityId = 3,
-                            CourseId = 2
-                        },
-                        new
-                        {
-                            CityId = 4,
-                            CourseId = 2
-                        },
-                        new
-                        {
-                            CityId = 1,
-                            CourseId = 3
-                        },
-                        new
-                        {
                             CityId = 2,
                             CourseId = 3
-                        },
-                        new
-                        {
-                            CityId = 1,
-                            CourseId = 4
-                        },
-                        new
-                        {
-                            CityId = 2,
-                            CourseId = 4
-                        },
-                        new
-                        {
-                            CityId = 1,
-                            CourseId = 5
-                        },
-                        new
-                        {
-                            CityId = 2,
-                            CourseId = 5
                         });
                 });
 

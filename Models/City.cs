@@ -9,6 +9,6 @@ namespace FinalProject.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public virtual ICollection<Course> Courses { get; set; }
+        public virtual ICollection<CourseCity> CourseCities { get; set; }
     }
 }

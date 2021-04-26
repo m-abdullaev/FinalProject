@@ -1,0 +1,92 @@
+﻿@model CourseIndexViewModel
+    <style>
+        body {
+            background-color: whitesmoke;
+        }
+
+        .container {
+            max-width: 1170px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .content {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .left-side {
+            width: 35%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .right-side {
+            width: 65%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cities, .categories {
+            margin: 10px 20px 10px 0px;
+            border: 1px solid silver;
+            padding: 10px 20px 20px 20px;
+            border-radius: 3px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .city, .category {
+            border-radius: 3px;
+            padding: 10px;
+            margin: 5px;
+        }
+
+        .active {
+            background-color: silver;
+        }
+
+        .course {
+            background-color: white;
+            padding: 10px 20px 20px 20px;
+            margin: 10px;
+            border-radius: 3px;
+        }
+
+        a {
+            text-decoration:none !important;
+        }
+    </style>
+    <div class="container">
+        <h1>Courses</h1>
+        <p>Open your talant with us. No previous expierence needeed</p>
+        <div class="content">
+            <div class="left-side">
+                <div class="cities">
+                    <h4>Cities</h4>
+                    <div class="city active"><a href="~/Course/Index?categoryId=0">Cities</a></div>
+                    @foreach (var item in Model.Cities)
+                    {
+                        <div class="city"><a href="~/Course/Index?cityId=@item.Id">@item.CityName</a></div>
+                    }
+                </div>
+                <div class="categories">
+                    <h4>Categories</h4>
+                    <div class="category active">Categories</div>
+                    @foreach (var item in Model.Categories)
+                    {
+                        <div class="category"><a href="~/Course/Index?categoryId=@item.Id">@item.Name</a></div>
+                    }
+                </div>
+            </div>
+            <div class="right-side">
+                @foreach(var item in Model.Courses)
+            {
+                <div class="course">
+                    <h2><a href="~/Course/Index?">@item.Title</a></h2>
+                    <p>@item.ShorDescription</p>
+                </div>
+            }
+            </div>
+        </div>
+    </div>

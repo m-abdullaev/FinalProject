@@ -46,6 +46,12 @@ namespace FinalProject.Controllers
             return View(model);
         }
 
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("Login");
+        }
+
         [HttpGet]
         public IActionResult Register()
         {

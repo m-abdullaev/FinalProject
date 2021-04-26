@@ -4,20 +4,37 @@ using FinalProject.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FinalProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210425115451_AddDefaultCourses")]
+    partial class AddDefaultCourses
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.5")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("CityCourse", b =>
+                {
+                    b.Property<int>("CitiesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CoursesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CitiesId", "CoursesId");
+
+                    b.HasIndex("CoursesId");
+
+                    b.ToTable("CityCourse");
+                });
 
             modelBuilder.Entity("FinalProject.Models.ApplicationUser", b =>
                 {
@@ -215,22 +232,6 @@ namespace FinalProject.Migrations
                         new
                         {
                             Id = 3,
-                            CategoryId = 2,
-                            Description = "<h2>Test Header for php</h2><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad ipsum culpa molestiae quo nemo aliquam enim! Dolor rem, sapiente nisi, totam dolore, atque architecto ad obcaecati molestiae impedit error nemo.</p>",
-                            Name = "PHP",
-                            ShortDescription = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad ipsum culpa molestiae quo nemo aliquam enim! Dolor rem, sapiente nisi, totam dolore, atque architecto ad obcaecati molestiae impedit error nemo."
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CategoryId = 2,
-                            Description = "<h2>Test Header for go lang</h2><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad ipsum culpa molestiae quo nemo aliquam enim! Dolor rem, sapiente nisi, totam dolore, atque architecto ad obcaecati molestiae impedit error nemo.</p>",
-                            Name = "Go Lang",
-                            ShortDescription = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad ipsum culpa molestiae quo nemo aliquam enim! Dolor rem, sapiente nisi, totam dolore, atque architecto ad obcaecati molestiae impedit error nemo."
-                        },
-                        new
-                        {
-                            Id = 5,
                             CategoryId = 1,
                             Description = "<h2>Test Header for QA</h2><ul><li>Item1</li><li>Item2</li></ul><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad ipsum culpa molestiae quo nemo aliquam enim! Dolor rem, sapiente nisi, totam dolore, atque architecto ad obcaecati molestiae impedit error nemo.</p>",
                             Name = "Quality assurance",
@@ -265,7 +266,7 @@ namespace FinalProject.Migrations
                         },
                         new
                         {
-                            CityId = 3,
+                            CityId = 4,
                             CourseId = 1
                         },
                         new
@@ -280,43 +281,8 @@ namespace FinalProject.Migrations
                         },
                         new
                         {
-                            CityId = 3,
-                            CourseId = 2
-                        },
-                        new
-                        {
-                            CityId = 4,
-                            CourseId = 2
-                        },
-                        new
-                        {
-                            CityId = 1,
-                            CourseId = 3
-                        },
-                        new
-                        {
                             CityId = 2,
                             CourseId = 3
-                        },
-                        new
-                        {
-                            CityId = 1,
-                            CourseId = 4
-                        },
-                        new
-                        {
-                            CityId = 2,
-                            CourseId = 4
-                        },
-                        new
-                        {
-                            CityId = 1,
-                            CourseId = 5
-                        },
-                        new
-                        {
-                            CityId = 2,
-                            CourseId = 5
                         });
                 });
 
@@ -451,6 +417,21 @@ namespace FinalProject.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("CityCourse", b =>
+                {
+                    b.HasOne("FinalProject.Models.City", null)
+                        .WithMany()
+                        .HasForeignKey("CitiesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FinalProject.Models.Course", null)
+                        .WithMany()
+                        .HasForeignKey("CoursesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("FinalProject.Models.Course", b =>
                 {
                     b.HasOne("FinalProject.Models.Category", "Category")
@@ -465,13 +446,13 @@ namespace FinalProject.Migrations
             modelBuilder.Entity("FinalProject.Models.CourseCity", b =>
                 {
                     b.HasOne("FinalProject.Models.City", "City")
-                        .WithMany("CourseCities")
+                        .WithMany()
                         .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("FinalProject.Models.Course", "Course")
-                        .WithMany("CourseCities")
+                        .WithMany()
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -535,16 +516,6 @@ namespace FinalProject.Migrations
             modelBuilder.Entity("FinalProject.Models.Category", b =>
                 {
                     b.Navigation("Courses");
-                });
-
-            modelBuilder.Entity("FinalProject.Models.City", b =>
-                {
-                    b.Navigation("CourseCities");
-                });
-
-            modelBuilder.Entity("FinalProject.Models.Course", b =>
-                {
-                    b.Navigation("CourseCities");
                 });
 #pragma warning restore 612, 618
         }

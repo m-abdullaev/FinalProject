@@ -15,7 +15,7 @@ namespace FinalProject.Models
         public string ShortDescription { get; set; }
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
-        public virtual ICollection<City> Cities { get; set; }
+        public virtual ICollection<CourseCity> CourseCities { get; set; }
 
     }
 }
