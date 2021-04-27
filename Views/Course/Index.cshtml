@@ -64,7 +64,7 @@
             <div class="left-side">
                 <div class="cities">
                     <h4>Cities</h4>
-                    <div class="city active"><a href="~/Course/Index?categoryId=0">Cities</a></div>
+                    <div class="city active"><a asp-action="Index">Cities</a></div>
                     @foreach (var item in Model.Cities)
                     {
                         <div class="city"><a href="~/Course/Index?cityId=@item.Id">@item.CityName</a></div>
@@ -72,7 +72,7 @@
                 </div>
                 <div class="categories">
                     <h4>Categories</h4>
-                    <div class="category active">Categories</div>
+                    <div class="category active"><a asp-action="Index">Categories</a></div>
                     @foreach (var item in Model.Categories)
                     {
                         <div class="category"><a href="~/Course/Index?categoryId=@item.Id">@item.Name</a></div>
@@ -80,11 +80,11 @@
                 </div>
             </div>
             <div class="right-side">
-                @foreach(var item in Model.Courses)
+            @foreach(var item in Model.Courses)
             {
                 <div class="course">
-                    <h2><a href="~/Course/Index?">@item.Title</a></h2>
-                    <p>@item.ShorDescription</p>
+                    <h2><a href="~/course/CourseDetails?id=@item.Id">@item.Title</a></h2>
+                    <p>@item.Description</p>
                 </div>
             }
             </div>

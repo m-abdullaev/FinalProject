@@ -1,5 +1,6 @@
 ﻿using FinalProject.Context;
 using FinalProject.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -17,9 +18,10 @@ namespace FinalProject.Controllers
         {
             this.context = context;
         }
+
         public async Task<IActionResult> Index(int categoryId, int cityId)
         {
-            var courses = await context.Courses.Where(x => (categoryId != 0 ? x.CategoryId == categoryId : true)).Select(x => new CourseViewModel { Id = x.Id, ShorDescription = x.ShortDescription, Title = x.Name }).ToListAsync();
+            var courses = await context.Courses.Where(x => (categoryId != 0 ? x.CategoryId == categoryId : true)).Select(x => new CourseViewModel { Id = x.Id, Description = x.ShortDescription, Title = x.Name }).ToListAsync();
             
             if(cityId != 0) 
             {
@@ -36,5 +38,28 @@ namespace FinalProject.Controllers
             };
             return View(model);
         }
+
+        public async Task<IActionResult> CourseDetails(int id)
+        {
+            var course = await context.Courses.FindAsync(id);
+
+            var courseViewModel = new CourseViewModel { Id = course.Id, Title = course.Name, Description = course.Description };
+
+            return View(courseViewModel);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Create()
+        {
+            var createCourseViewModel = new CreateCourseViewModel 
+            { 
+                Categories = await context.Categories.Select(x => new CategoryViewModel { Id = x.Id, Name = x.Name }).ToListAsync(),
+                Cities = await context.Cities.Select(x=> new CityViewModel { Id = x.Id, CityName = x.Name}).ToListAsync()
+            };
+            return View(createCourseViewModel);
+        }
+
+
+
     }
 }

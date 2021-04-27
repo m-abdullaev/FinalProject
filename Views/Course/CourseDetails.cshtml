@@ -1,0 +1,79 @@
+﻿@model CourseViewModel
+
+<style>
+    body {
+        background-color: whitesmoke;
+    }
+
+    .container {
+        max-width: 1170px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .content {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .left-side {
+        width: 65%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .right-side {
+        width: 35%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cities, .categories {
+        margin: 10px 20px 10px 0px;
+        border: 1px solid silver;
+        padding: 10px 20px 20px 20px;
+        border-radius: 3px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .city, .category {
+        border-radius: 3px;
+        padding: 10px;
+        margin: 5px;
+    }
+
+    .active {
+        background-color: whitesmoke;
+        border: 1px solid black;
+    }
+
+    .course {
+        background-color: white;
+        padding: 10px 20px 20px 20px;
+        margin: 10px 10px 10px 0px;
+        border-radius: 3px;
+    }
+
+    a {
+        text-decoration: none !important;
+    }
+</style>
+<div class="container">
+    <h1>@Model.Title</h1>
+    <div class="content">
+        <div class="left-side">
+            <div class="course">
+                @Html.Raw(Model.Description)
+            </div>
+            
+        </div>
+        <div class="right-side">
+            <div class="cities">
+                <h4>Interested?</h4>
+                <p>Register and leave a request, we will let you know about our decision :)</p>
+                <div class="city active"><a asp-action="Index">Cities</a></div>
+            </div>
+        </div>
+    </div>
+</div>
