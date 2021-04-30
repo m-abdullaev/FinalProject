@@ -1,13 +1,11 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 using FinalProject.Context;
 using FinalProject.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -45,7 +43,7 @@ namespace FinalProject
             services.ConfigureApplicationCookie(configure =>
             {
                 configure.LoginPath = "/Account/Login";
-                configure.AccessDeniedPath = "/Account/AccessDenied";
+                configure.AccessDeniedPath = "/Account/Login";
                 configure.ExpireTimeSpan = TimeSpan.FromMinutes(30);
                 configure.SlidingExpiration = true;
             });

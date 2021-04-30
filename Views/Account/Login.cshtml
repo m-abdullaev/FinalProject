@@ -2,12 +2,12 @@
 <h1>Login</h1>
 <div asp-validation-summary="All"></div>
 <form action="Login" method="post">
-    <input type="text" asp-for="Login" placeholder="Username" />
-    <span asp-validation-for="Login" class="text-danger"></span>
-    <input type="password" asp-for="Password" placeholder="Password" />
+    <input type="text" asp-for="Login" class="form-control" style="width:200px" placeholder="Username" />
+    <span asp-validation-for="Login"  class="text-danger"></span>
+    <input type="password" asp-for="Password" class="form-control" style="width:200px" placeholder="Password" />
     <span asp-validation-for="Password" class="text-danger"></span>
     <input type="hidden" asp-for="ReturnUrl" />
-    <input type="submit" value="login" />
+    <input type="submit" class="btn btn-primary" style="width:200px" value="Login" />
 </form>
 
 

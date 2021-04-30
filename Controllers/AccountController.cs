@@ -4,8 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
+
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -98,7 +97,7 @@ namespace FinalProject.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAllUsers()
         {
-            var users = await userManager.Users.Select(x => new UserViewModel 
+            var users = await userManager.Users.Select(x => new UserViewModel
             {
                 FirstName = x.FirstName,
                 LastName = x.LastName,
@@ -107,11 +106,9 @@ namespace FinalProject.Controllers
                 Email = x.Email,
                 UserName = x.UserName,
                 DOB = x.DOB,
-                PhoneNumber = x.PhoneNumber              
+                PhoneNumber = x.PhoneNumber
             }).ToListAsync();
-
             return View(users);
-
         }
     }
 }
