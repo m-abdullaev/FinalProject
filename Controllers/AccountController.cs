@@ -3,6 +3,7 @@ using FinalProject.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,11 +35,11 @@ namespace FinalProject.Controllers
                 return View(model);
             }
 
-            var result = await signInManager.PasswordSignInAsync(model.Login, model.Password, false, false);
+            var result = await signInManager.PasswordSignInAsync(model.Login, model.Password, true, false);
 
             if(result.Succeeded)
             {
-                return Redirect(model.ReturnUrl ?? "/Home/Index");
+                return Redirect(model.ReturnUrl ?? "/Course/Index");
             }
 
             ModelState.AddModelError("Signin", "Login or password incorrect");
@@ -92,6 +93,25 @@ namespace FinalProject.Controllers
             }
 
             return View(model);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var users = await userManager.Users.Select(x => new UserViewModel 
+            {
+                FirstName = x.FirstName,
+                LastName = x.LastName,
+                MiddleName = x.MiddleName,
+                Gender = x.Gender,
+                Email = x.Email,
+                UserName = x.UserName,
+                DOB = x.DOB,
+                PhoneNumber = x.PhoneNumber              
+            }).ToListAsync();
+
+            return View(users);
+
         }
     }
 }
